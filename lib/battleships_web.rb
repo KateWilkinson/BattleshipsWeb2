@@ -16,11 +16,11 @@ class BattleshipsWeb < Sinatra::Base
   get '/setup_game' do
 
     $game = Game.new(Player,Board)
-    $game.player_2.place_ship(Ship.battleship, :A1, :vertically)
-    $game.player_2.place_ship(Ship.aircraft_carrier, :C1, :vertically)
-    $game.player_2.place_ship(Ship.cruiser, :E1, :vertically)
-    $game.player_2.place_ship(Ship.destroyer, :G1, :vertically)
-    $game.player_2.place_ship(Ship.submarine, :I1, :vertically)
+    $game.player_2.place_ship(Ship.destroyer, :A1, :vertically)
+    # $game.player_2.place_ship(Ship.aircraft_carrier, :C1, :vertically)
+    # $game.player_2.place_ship(Ship.cruiser, :E1, :vertically)
+    # $game.player_2.place_ship(Ship.destroyer, :G1, :vertically)
+    # $game.player_2.place_ship(Ship.submarine, :I1, :vertically)
 
     redirect '/play_game'
 
@@ -42,10 +42,16 @@ class BattleshipsWeb < Sinatra::Base
         @error = 'Enter coordinate'
       end
     rescue RuntimeError => @error
-    
     #   # @error = 'Coordinate out of bounds - please enter valid coordinate'
     end
+    if $game.player_1.winner?
+      redirect '/winner'
+    end
     erb :play_game
+  end
+
+  get '/winner' do
+    erb :winner
   end
 
   run! if app_file == $0
