@@ -1,9 +1,14 @@
-<div>
 
-	<% if @coord && @coord != "" %>
-		<%= $game.player_1.shoot @coord.to_sym %>
-	<% end %>
-	<pre><%= $game.opponent_board_view $game.player_1 %></pre>
+
+
+<% if @error %>
+	<div class='error'>
+		<%= @error %>
+	</div>
+<% end %>
+
+<div>
+	<pre><%= @board %></pre>
 	<form action='/play_game' method='post'>
 		Enter the coordinate you want to shoot at<br>
 		<input type="text" name="coord">
@@ -11,5 +16,3 @@
 	</form>
 
 </div>
-
-<div>Coordinate out of bounds - please enter valid coordinate</div>

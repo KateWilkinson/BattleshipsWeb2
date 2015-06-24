@@ -26,12 +26,23 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/play_game' do
-
+    @board = $game.opponent_board_view $game.player_1
     erb :play_game
   end
 
   post '/play_game' do
-    @coord = params[:coord]
+    coord = params[:coord]
+    begin
+      if coord && coord != ""
+        $game.player_1.shoot coord.to_sym
+        @board = $game.opponent_board_view $game.player_1
+      else
+        erb :play_game
+        @error = 'Enter coordinate'
+      end
+    rescue RuntimeError => @error
+    #   # @error = 'Coordinate out of bounds - please enter valid coordinate'
+    end
     erb :play_game
   end
 
