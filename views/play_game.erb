@@ -1,13 +1,14 @@
 <div>
+
 	<% if @coord && @coord != "" %>
 		<%= $game.player_1.shoot @coord.to_sym %>
-<pre>
-<%= $game.opponent_board_view $game.player_1 %>
-</pre>
-	<% end %>	
-  	<form action='/play_game' method='post'>
-    Enter the coordinate you want to hit!
-    <input type="text" name="coord">
-   	<input type="submit" value="Submit">
+<pre><%= $game.opponent_board_view $game.player_1 %></pre>
+	<% end %>
+
+    <form action='/play_game' method='post'>
+      Enter the coordinate you want to shoot at<br>
+      <input type="text" name="coord">
+   	  <input type="submit" value="Fire!">
   	</form>
+
 </div>

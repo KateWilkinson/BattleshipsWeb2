@@ -3,24 +3,24 @@ require 'spec_helper'
 feature 'Starting a new game' do
   scenario 'I am asked to enter my name' do
     visit '/'
-    click_link 'Click to begin'
-    expect(page).to have_content "What is your name you seafaring scoundrel?"
+    click_link 'Register to play'
+    expect(page).to have_content "What's your name, new player?"
   end
 
   scenario 'I can enter my name' do
     visit '/new_game'
-    fill_in('name', with: 'Michael')
+    fill_in('name', with: 'Kate')
     click_on 'Submit'
-    expect(page).to have_content 'You are now registered, Michael!'
+    expect(page).to have_content 'You are now registered, Kate!'
 
   end
 
   scenario 'I can click a link to start the game' do
     visit '/new_game'
-    fill_in('name', with: 'Michael')
+    fill_in('name', with: 'Kate')
     click_on 'Submit'
     click_link 'Begin your adventure'
-    expect(page).to have_content 'Enter the coordinate you want to hit!'
+    expect(page).to have_content 'Enter the coordinate you want to shoot at'
   end
 
 end
