@@ -34,6 +34,15 @@ feature 'I want to be able to play the game' do
     expect(page).to have_content 'Invalid coordinate'
   end
 
+   scenario 'error message alert if the same coordinate entered' do
+    visit '/setup_game'
+    fill_in('coord', with: 'A5')
+    click_on 'Fire!'
+    fill_in('coord', with: 'A5')
+    click_on 'Fire!'
+    expect(page).to have_content 'Coordinate has been shot already'
+  end
+
   # scenario 'error message alert if same coordinate entered twice' do
   #end
 

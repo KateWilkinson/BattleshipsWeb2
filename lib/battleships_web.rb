@@ -42,6 +42,7 @@ class BattleshipsWeb < Sinatra::Base
         @error = 'Enter coordinate'
       end
     rescue RuntimeError => @error
+    
     #   # @error = 'Coordinate out of bounds - please enter valid coordinate'
     end
     erb :play_game
