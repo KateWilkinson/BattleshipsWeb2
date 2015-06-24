@@ -26,6 +26,7 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/play_game' do
+
     erb :play_game
   end
 

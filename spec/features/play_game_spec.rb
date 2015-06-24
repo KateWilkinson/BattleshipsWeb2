@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'I want to be able to play the game' do
 
   scenario 'I want to be able to fire at a ship' do
-    visit '/play_game'
+    visit '/setup_game'
     expect(page).to have_content 'Enter the coordinate you want to shoot at'
   end
 
@@ -26,5 +26,15 @@ feature 'I want to be able to play the game' do
     fill_in('coord', with: 'A1')
     expect(page).to have_content 'Enter the coordinate you want to shoot at'
   end
+
+  scenario 'error message alert if invalid coordinate entered/ or coordinate is off board' do
+    visit '/setup_game'
+    fill_in('coord', with: 'A11')
+    expect(page).to have_content 'Coordinate out of bounds - please enter valid coordinate'
+  end
+
+  # scenario 'error message alert if same coordinate entered twice' do
+  #end
+
 
 end
