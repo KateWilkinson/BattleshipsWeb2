@@ -3,6 +3,7 @@ require 'battleships'
 
 class BattleshipsWeb < Sinatra::Base
   set :views, proc { File.join(root, '..', 'views') }
+  set :public_folder, 'public'
   get '/' do
     erb :index
   end
@@ -34,7 +35,7 @@ class BattleshipsWeb < Sinatra::Base
     coord = params[:coord]
     begin
       if coord && coord != ""
-        $game.player_1.shoot coord.to_sym
+        @shot_success = $game.player_1.shoot coord.to_sym
         @board = $game.opponent_board_view $game.player_1
       else
         erb :play_game

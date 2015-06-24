@@ -30,7 +30,8 @@ feature 'I want to be able to play the game' do
   scenario 'error message alert if invalid coordinate entered/ or coordinate is off board' do
     visit '/setup_game'
     fill_in('coord', with: 'A11')
-    expect(page).to have_content 'Coordinate out of bounds - please enter valid coordinate'
+    click_on 'Fire!'
+    expect(page).to have_content 'Invalid coordinate'
   end
 
   # scenario 'error message alert if same coordinate entered twice' do
